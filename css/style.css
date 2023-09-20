@@ -107,7 +107,7 @@ body {
 
 /* Home Page */
 #hero{
-    background-image: url("../img/background11.png");
+    background-image: url("../assets/background11.png");
     background-color: #bafff4;
     height: 90vh;
     width: 100%;
@@ -128,7 +128,7 @@ body {
 }
 
 #hero button{
-    background-image: url("../img/button.png");
+    background-image: url("../assets/button.png");
     background-color: transparent;
     color: #088178;
     border: 0;
@@ -255,7 +255,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    background-image: url(../img/banner/b14.png);
+    background-image: url(../assets/banner/b14.png);
     background-repeat: no-repeat;
     background-position: 20% 30%;
     background-color: #041e42;
@@ -474,7 +474,7 @@ footer .copyright{
 
 /* About Page */
 #page-header{
-    background-image: url(../img/about/banner.png);
+    background-image: url(../assets/about/banner.png);
     width: 100%;
     height: 40vh;
     background-size: cover;
