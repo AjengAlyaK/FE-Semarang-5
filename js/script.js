@@ -13,6 +13,20 @@ if (close) {
     })
 }
 
+function generateStarRating(rating) {
+    const maxRating = 5; 
+    const filledStars = rating;
+    const emptyStars = maxRating - filledStars;
+    let starHTML = '';
+    for (let i = 0; i < filledStars; i++) {
+        starHTML += '<i class="fas fa-star"></i>';
+    }
+    for (let i = 0; i < emptyStars; i++) {
+        starHTML += '<i class="far fa-star"></i>';
+    }
+    return starHTML;
+}
+
 const getProduk = async ()=>{
     try {
         const respone = await fetch('https://be-semarang-5-production.up.railway.app/produk');
@@ -29,11 +43,7 @@ const getProduk = async ()=>{
                 <span>${res.data[i].brand}</span>
                 <h5>${res.data[i].nama_produk}</h5>
                 <div class="star">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                ${generateStarRating(Number(res.data[i].rating))}
                 </div>
                 <h4>${res.data[i].harga}</h4>
             </div>
@@ -42,8 +52,6 @@ const getProduk = async ()=>{
         div.innerHTML = produk;
         produkContainer.append(div);
         }
-        
-        console.log(res);
     } catch (error) {
         
     }
