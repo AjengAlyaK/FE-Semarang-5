@@ -292,6 +292,7 @@ body {
     padding: 15px;
     border-radius: 10px;
     background-color: #088178;
+    border: none;
     color: #fff;
     white-space: nowrap;
     border-top-left-radius: 0;
@@ -509,12 +510,19 @@ footer .copyright{
 #contact-details .details{
     width: 40%;
 }
+
+#form-details {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
 #contact-details .details span,
-#form-details form span{
+#form-details div span{
     font-size: 12px;
 }
 #contact-details .details h2,
-#form-details form h2 {
+#form-details div h2 {
     font-size: 26px;
     line-height: 35px;
     padding: 20px 0;
@@ -544,22 +552,25 @@ footer .copyright{
     width: 100%;
     height: 100%;
 }
-#form-details form{
+#form-details div{
     width: 65%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-#form-details form input,
-#form-details form textarea{
+#form-details div input,
+#form-details div textarea{
     width: 100%;
     padding: 12px 15px;
     outline: none;
     margin-bottom: 20px;
     border: 1px solid #e1e1e1;
 }
-#form-details form button{
+#form-details div button{
     background-color: #088178;
     color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
 }
 

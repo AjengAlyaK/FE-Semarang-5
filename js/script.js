@@ -59,3 +59,89 @@ const getProduk = async ()=>{
 }
 
 getProduk();
+
+// get news letter
+function postNewsLetter() {
+    const railwayEndpointUrl = 'https://be-semarang-5-production.up.railway.app/get-news-letter';
+
+    const emailInput = document.getElementById('emailInput');
+    const email = emailInput.value;
+    // console.log(email)
+    const dataToSend = {
+        email: email
+    };
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend), 
+    };
+
+    fetch(railwayEndpointUrl, requestOptions)
+    .then((response) => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then((data) => {
+        alert('success');
+        console.log('Response:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+const postButton = document.getElementById('postButton');
+if (postButton) {
+    postButton.addEventListener('click', postNewsLetter);
+}
+
+// send message
+function sendMessage() {
+    const railwayEndpointUrl1 = 'https://be-semarang-5-production.up.railway.app/send-message';
+
+    const name = document.getElementById('name').value;
+    const emailMessage = document.getElementById('emailMessage').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+
+    console.log(name);
+    const dataToSend = {
+        name: name,
+        email: emailMessage,
+        subject: subject,
+        message: message
+    };
+
+    const requestOptions1 = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend), 
+    };
+
+    fetch(railwayEndpointUrl1, requestOptions1)
+    .then((response) => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then((data) => {
+        alert('success');
+        console.log('Response:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+const postMessage = document.getElementById('postMessage');
+if (postMessage) {
+    postMessage.addEventListener('click', sendMessage);
+}
