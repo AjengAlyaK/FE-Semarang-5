@@ -60,6 +60,16 @@ const getProduk = async ()=>{
 
 getProduk();
 
+// email validator
+function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (emailRegex.test(email)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // get news letter
 function postNewsLetter() {
     const railwayEndpointUrl = 'https://be-semarang-5-production.up.railway.app/get-news-letter';
@@ -67,32 +77,38 @@ function postNewsLetter() {
     const emailInput = document.getElementById('emailInput');
     const email = emailInput.value;
     // console.log(email)
-    const dataToSend = {
-        email: email
-    };
-
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend), 
-    };
-
-    fetch(railwayEndpointUrl, requestOptions)
-    .then((response) => {
-        if (!response.ok) {
-        throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then((data) => {
-        alert('success');
-        console.log('Response:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    // validate email
+    if(validateEmail(email)){
+        const dataToSend = {
+            email: email
+        };
+    
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToSend), 
+        };
+    
+        fetch(railwayEndpointUrl, requestOptions)
+        .then((response) => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            alert('success');
+            console.log('Response:', data);     // ??
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    } else {
+        alert('Email format is not valid');
+    }
+    
 }
 
 const postButton = document.getElementById('postButton');
@@ -108,37 +124,42 @@ function sendMessage() {
     const emailMessage = document.getElementById('emailMessage').value;
     const subject = document.getElementById('subject').value;
     const message = document.getElementById('message').value;
+    // console.log(name);
 
-    console.log(name);
-    const dataToSend = {
-        name: name,
-        email: emailMessage,
-        subject: subject,
-        message: message
-    };
+    if(validateEmail(emailMessage)){
+        const dataToSend = {
+            name: name,
+            email: emailMessage,
+            subject: subject,
+            message: message
+        };
+    
+        const requestOptions1 = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataToSend), 
+        };
+    
+        fetch(railwayEndpointUrl1, requestOptions1)
+        .then((response) => {
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then((data) => {
+            alert('success');
+            console.log('Response:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    } else {
+        alert('Email format is not valid');
+    }
 
-    const requestOptions1 = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend), 
-    };
-
-    fetch(railwayEndpointUrl1, requestOptions1)
-    .then((response) => {
-        if (!response.ok) {
-        throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then((data) => {
-        alert('success');
-        console.log('Response:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
 }
 
 const postMessage = document.getElementById('postMessage');
