@@ -100,7 +100,6 @@ function postNewsLetter() {
         })
         .then((data) => {
             alert('success');
-            console.log('Response:', data);     // ??
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -113,6 +112,16 @@ function postNewsLetter() {
 
 const postButton = document.getElementById('postButton');
 if (postButton) {
+    postButton.addEventListener('click', postNewsLetter);
+}
+
+const postButton1 = document.getElementById('postButton1');
+if (postButton1) {
+    postButton.addEventListener('click', postNewsLetter);
+}
+
+const postButton2 = document.getElementById('postButton2');
+if (postButton2) {
     postButton.addEventListener('click', postNewsLetter);
 }
 
