@@ -29,23 +29,21 @@ function generateStarRating(rating) {
 
 const getProduk = async ()=>{
     try {
-        const respone = await fetch('https://be-semarang-5-production.up.railway.app/produk');
+        const respone = await fetch('https://fakestoreapi.com/products');
         const res = await respone.json();
         const produkContainer = document.querySelector('.pro-container');
-        for (let i = 0; i < res.data.length; i++) {
+        for (let i = 0; i < 8; i++) {
             const div = document.createElement('div');
             div.classList.add('pro');
 
             const produk = `
         
-            <img src=${res.data[i].gambar} alt="">
+            <img src=${res.image} alt="">
             <div class="des">
-                <span>${res.data[i].brand}</span>
-                <h5>${res.data[i].nama_produk}</h5>
-                <div class="star">
-                ${generateStarRating(Number(res.data[i].rating))}
-                </div>
-                <h4>${res.data[i].harga}</h4>
+                <span>${res.category}</span>
+                <h5>${res.title}</h5>
+                
+                <h4>${res.price}</h4>
             </div>
             <a href=""><i class="fal fa-shopping-cart cart"></i></a>
         `
@@ -76,8 +74,6 @@ function postNewsLetter() {
 
     const emailInput = document.getElementById('emailInput');
     const email = emailInput.value;
-    // console.log(email)
-    // validate email
     if(validateEmail(email)){
         const dataToSend = {
             email: email
